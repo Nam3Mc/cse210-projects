@@ -10,17 +10,6 @@ public class Menu
         "0. Quit" 
     };
 
-    List<string> _menu2 = new List<string>{
-        "MENU",
-        "1. Display", 
-        "2. Delete",
-        "3. Edit",
-        "4. Save to file",
-        "0. Quit" 
-    };
-
-
-
     public void DisplayMenu ()
     {
         foreach ( string item in _menuItems)
@@ -28,15 +17,6 @@ public class Menu
             Console.WriteLine(item);
         } 
     }
-
-    public void DisplayMenu2 ()
-    {
-        foreach ( string item in _menu2)
-        {
-            Console.WriteLine(item);
-        } 
-    }
-
 
     public void Options ()
     {
@@ -49,6 +29,8 @@ public class Menu
         {
             DisplayMenu();
             Console.Write("What do you want to do? ");
+
+            userChoice = int.Parse(Console.ReadLine());
             
 
 
@@ -76,7 +58,14 @@ public class Menu
             {
                 Console.WriteLine("What will be the file name you want to work with? ");
                 Console.Write(": " );
-                Journal.ReadFromFile(Console.ReadLine());
+                string fileNmae = Console.ReadLine();
+                List<Entry> loadedEntries = Journal.ReadFromFile(fileNmae);
+                 
+                foreach (Entry loadedEntry in loadedEntries);
+                {
+                    Console.WriteLine(loadedEntries);
+                }
+                
             }
 
             else if (userChoice == 4)
@@ -85,7 +74,6 @@ public class Menu
                 string fileName = Console.ReadLine() ;
                 Journal.SaveToFile( journal._entries , fileName );
                 Console.WriteLine("");
-                DisplayMenu2();
                 
             }
 
